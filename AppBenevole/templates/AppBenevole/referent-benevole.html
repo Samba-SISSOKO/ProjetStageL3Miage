@@ -1,0 +1,101 @@
+
+{% extends 'AppBenevole/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block main_content %}
+
+<section class="container">
+
+    <div class="row justify-content-around text-center text-white mt-5">
+
+        <div class="col-sm-8"> <h3> Projet Application Benevole </h3></div>
+
+    </div>
+    
+    
+
+    <div class="row justify-content-around text-center text-white mt-1">
+
+        <div class="col-sm-8">
+
+            <table class="table table-dark table-striped">
+                <thead >
+                    <tr>
+                      <th scope="col">numéro</th>
+                      <th scope="col">id_personne</th>
+                      <th scope="col">nom</th>
+                      <th scope="col">prenom</th>
+                      <th scope="col">disponibilite</th>
+                      <th scope="col">nbres_personnes_suivi</th>
+                      
+                      <th scope="col">orientations_vers</th>
+                      <th scope="col">date_orientation</th>
+                      <th scope="col">etat_avancement</th>
+                      <th scope="col">Action</th>
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for be in referent_benevole %}
+
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{be.id_personne}}</td>
+                      <td>{{be.nom}}</td>
+                      <td>{{be.prenom}}</td>
+                      <td>{{be.disponibilite}}</td>
+                      <td>{{be.nbres_personnes_suivi}}</td>
+                      
+                      <td>{{be.orientations_vers}}</td>
+                      <td>{{be.date_orientation}}</td>
+                      <td>{{be.etat_avancement}}</td>
+                      <td class="aline-inline">
+                        <table>
+                          <tr>
+                            <td>
+                              <form action="{% url 'suprimer-referent-benevole' %}", method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value={{be.id}}>
+                                <input type="submit" value="Suprimer" class="btn btn-danger btn-sm">
+      
+                            </form>
+                            </td>
+                            <td>
+                              <a href="{% url 'modifier-referent-benevole' be.id %} " class="btn btn-sm btn-info">Modifier</a>
+                          </td>
+
+                          </tr>
+                        </table>
+
+
+                        
+                      </td>
+
+
+                    </tr>
+                    {% endfor %}
+                
+                  </tbody>
+              </table>
+              
+
+        </div>
+        
+    </div>
+
+    <div class="row justify-content-around mt-3">
+      <div class="col-sm-8">
+          <a href="{% url 'ajouter-referent-benevole' %}" class='btn btn-primary float-end'>Ajouter un Referent_Benevole</a>
+
+      </div>
+  </div>
+
+
+
+
+
+
+
+</section>
+
+{% endblock main_content %}

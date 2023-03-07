@@ -1,0 +1,121 @@
+
+
+class Mentors(models.Model):
+
+    nom = models.CharField(max_length=50)
+    prenom = models.CharField(max_length=50)
+    ville = models.CharField(max_length=50)
+    telephone = models.IntegerField()
+    email = models.EmailField(max_length=100)
+    ecole = models.CharField(max_length=100)
+    nom_ecole = models.CharField(max_length=100)
+    nbre_heures_disponibles = models.IntegerField()
+    disponibilités = models.CharField(max_length=100)
+
+class Accompagnement_administrative(models.Model):
+
+    id_candidat = models.ForeignKey('Candidat', models.DO_NOTHING, db_column='id_candidat')
+    id_mentor = models.ForeignKey('Mentors', models.DO_NOTHING, db_column='id_mentor')
+    cv_a_jour = models.CharField(max_length=50)
+    candidature_formation_effectuée = models.CharField(max_length=50)
+    ville = models.CharField(max_length=50)
+    preparation_aux_entretiens = models.CharField(max_length=100)
+    resultat = models.CharField(max_length=100)
+    stade_accompagnement = models.CharField(max_length=100)
+
+class Accompagnement_formation(models.Model):
+
+    id_candidat = models.ForeignKey('Candidat', models.DO_NOTHING, db_column='id_candidat')
+    id_mentor = models.ForeignKey('Mentors', models.DO_NOTHING, db_column='id_mentor')
+    organisme_de_formation = models.CharField(max_length=50)
+    nom_formation = models.CharField(max_length=50)
+    avancement_de_formation = models.CharField(max_length=50)
+    stade_accompagnement = models.IntegerField()
+
+class Accompagnement_professionnel(models.Model):
+
+    id_candidat = models.ForeignKey('Candidat', models.DO_NOTHING, db_column='id_candidat')
+    id_mentor = models.ForeignKey('Mentors', models.DO_NOTHING, db_column='id_mentor')
+    type_contrat = models.CharField(max_length=50)
+    cv_a_jour = models.CharField(max_length=50)
+    lettre_motivation_MAJ = models.CharField(max_length=50)
+    preparation_aux_entretiens = models.IntegerField()
+    initiation_a_la_recherche_emploi = models.EmailField(max_length=100)
+    nbre_de_candidatures = models.IntegerField()
+    stade_accompagnement = models.CharField(max_length=100)
+
+class Accompagnement_professionnel(models.Model):
+
+    id_candidat = models.ForeignKey('Candidat', models.DO_NOTHING, db_column='id_candidat')
+    id_mentor = models.ForeignKey('Mentors', models.DO_NOTHING, db_column='id_mentor')
+    type_contrat = models.CharField(max_length=50)
+    cv_a_jour = models.CharField(max_length=50)
+    lettre_motivation_MAJ = models.CharField(max_length=50)
+    preparation_aux_entretiens = models.CharField(max_length=100)
+    initiation_a_la_recherche_emploi = models.EmailField(max_length=100)
+    nbre_de_candidatures = models.IntegerField()
+    stade_accompagnement = models.CharField(max_length=100)
+
+class Suivi_global(models.Model):
+
+    id_candidat = models.ForeignKey('Candidat', models.DO_NOTHING, db_column='nom_candidat')
+    id_mentor = models.ForeignKey('Mentors', models.DO_NOTHING, db_column='nom_mentor')
+    type_ecole = models.CharField(max_length=50)
+    date_suivi = models.DateField(max_length=50)
+    Accompagnement_administrative = models.CharField(max_length=50)
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class Suivi_global(models.Model):
+
+    type_ecole=(
+
+        ('Ecole de Commerce', 'Ecole de Commerce'),
+        ('Ecole Informatique', 'Ecole Informatique'),
+
+
+    )
+
+    Accompagnement_administrative=(
+
+        ('En cours', 'En cours'),
+        ('Terminer', 'Terminé'),
+        ('Abandonné', 'Abandonné')
+
+
+    )
+
+    id_candidat = models.ForeignKey('Candidat', models.DO_NOTHING, db_column='nom_candidat')
+    id_mentor = models.ForeignKey('Mentors', models.DO_NOTHING, db_column='nom_mentor')
+    type_ecole = models.CharField(max_length=50, null=False, choices=type_ecole)
+    date_suivi = models.DateField(max_length=50)
+    Accompagnement_administrative = models.CharField(max_length=50, null=False, choices=Accompagnement_administrative)
+    avancement_formation = models.CharField(max_length=50)
+////////////////////////////////////////////////////////////////////////////////
+
+\item Rencontre avec encadrant, pour discuter sur les différentes fonctionnalités de l’application
+\item Localhost logiciel et hébergement
+\item Création des diagrammes de classes du projet
+
+
+\subsection{2ème Semaine}
+\item Réunion avec l’encadrant pour discuter une nouvelle fois la modélisation des diagrammes de classes.
+\item Tutoriels d’apprentissage de MySQL avec Python/Django
+\item Installation de MAMP avec MySQL
+
+\subsection{3ème Semaine:}
+\item Creation de la base de données avec les tables nécessaires ainsi que de relations entre les tables
+\item Remplir la base de données
+
+
+\subsection{4ème Semaine}
+\item Tutoriels Python/Django
+\item Tutoriels HTML/CSS
+
+\subsection{Et les restes de semaines}
+\item Le codage en Python de l’application AppBenevo (le nom de l’application)
+\item Revoir le Design de l’application
+\item Tester l’application AppBenevo sur le serveur localhost

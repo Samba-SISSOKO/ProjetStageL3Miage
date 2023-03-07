@@ -1,0 +1,94 @@
+
+{% extends 'AppBenevole/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block main_content %}
+
+<section class="container">
+
+    <div class="row justify-content-around text-center text-white mt-5">
+
+        <div class="col-sm-8"> <h3> HACK'COEUR </h3></div>
+
+    </div>
+    
+    
+
+    <div class="row justify-content-around text-center text-white mt-1">
+
+        <div class="col-sm-8">
+
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">numéro</th>
+                      <th scope="col">id_personne</th>
+                      <th scope="col">types_mission</th>
+                      <th scope="col">ville</th>
+                      <th scope="col">postale</th>
+                      <th scope="col">mots_cles</th>
+                      <th scope="col">Action</th>
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for mis in mission %}
+
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{mis.id_personne}}</td>
+                      <td>{{mis.types_mission}}</td>
+                      <td>{{mis.ville}}</td>
+                      <td>{{mis.postale}}</td>
+                      <td>{{mis.mots_cles}}</td>
+                    
+                      <td class="aline-inline">
+                        <table>
+                          <tr>
+                            <td>
+                              <form action="{% url 'suprimer-mission' %}", method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value={{mis.id}}>
+                                <input type="submit" value="Suprimer" class="btn btn-danger btn-sm">
+      
+                            </form>
+                            </td>
+                            <td>
+                              <a href="{% url 'modifier-mission' mis.id %} " class="btn btn-sm btn-info">Modifier</a>
+                          </td>
+
+                          </tr>
+                        </table>
+
+
+                        
+                      </td>
+
+
+                    </tr>
+                    {% endfor %}
+                
+                  </tbody>
+              </table>
+              
+
+        </div>
+        
+    </div>
+
+    <div class="row justify-content-around mt-3">
+      <div class="col-sm-8">
+          <a href="{% url 'ajouter-mission' %}" class='btn btn-primary float-end'>Ajouter une mission</a>
+
+      </div>
+  </div>
+
+
+
+
+
+
+
+</section>
+
+{% endblock main_content %}

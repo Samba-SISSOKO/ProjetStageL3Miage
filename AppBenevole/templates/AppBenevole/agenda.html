@@ -1,0 +1,91 @@
+
+{% extends 'AppBenevole/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block main_content %}
+
+
+<section class="container">
+
+    <div class="row justify-content-around text-center text-white mt-5">
+
+        <div class="col-sm-8"> <h3> HACK'COEUR </h3></div>
+
+    </div>
+
+
+
+    <div class="row justify-content-around text-center text-white mt-1">
+
+        <div class="col-sm-8">
+
+            <table class="table table-dark table-striped">
+                <thead >
+                    <tr>
+                      <th scope="col">numéro</th>
+                      <th scope="col">id_personne</th>
+                      <th scope="col">id_mission</th>
+                      <th scope="col">date_debut</th>
+                      <th scope="col">date_fin</th>
+                      <th scope="col">Action</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for ag in agenda %}
+
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{ag.id_personne}}</td>
+                      <td>{{ag.id_mission}}</td>
+                      <td>{{ag.date_debut}}</td>
+                      <td>{{ag.date_fin}}</td>
+
+                      <td class="aline-inline">
+                        <table>
+                          <tr>
+                            <td>
+                              <form action="{% url 'suprimer-agenda' %}", method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value={{ag.id}}>
+                                <input type="submit" value="Suprimer" class="btn btn-danger btn-sm">
+
+                            </form>
+                            </td>
+                            <td>
+                              <a href="{% url 'modifier-agenda' ag.id %} " class="btn btn-sm btn-info">Modifier</a>
+                          </td>
+
+                          </tr>
+                        </table>
+
+
+
+                      </td>
+
+
+                    </tr>
+                    {% endfor %}
+
+                  </tbody>
+              </table>
+
+
+        </div>
+
+    </div>
+
+    <div class="row justify-content-around mt-3">
+      <div class="col-sm-8">
+          <a href="{% url 'ajouter-agenda' %}" class='btn btn-primary float-end'>Ajouter un agenda</a>
+
+      </div>
+  </div>
+
+
+</section>
+
+{% endblock main_content %}
+
+
+
+

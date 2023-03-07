@@ -1,0 +1,93 @@
+
+
+{% extends 'AppBenevole/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block main_content %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+     <title> Page d'acceuil </title>
+   </head>
+  <body>
+
+
+
+<nav class="navbar navbar-expand bg-dark">
+
+   <a class="navbar-brand" href="{% url 'personne' %}">Creer Nouvel Personne</a>
+
+   <ul class="navbar-nav">
+
+      <li class="nav-item active">
+
+         <a class="nav-link" href="{% url 'mission' %}">Creer Nouvel Mission</a>
+
+      </li>
+
+      <li class="nav-item">
+
+         <a class="nav-link" href="{% url 'referent-benevole' %}">Creer Nouvel Referent_Benevole</a>  </li>
+
+      <li>
+        <a class="nav-link" href="{% url 'agenda' %}">Creer Nouvel Agenda</a> </li>
+
+      <li>
+        <a class="nav-link" href="{% url 'etablissemet-accueil' %}">Creer Nouvel Etablissemnt_Accueil</a> </li>
+
+   </ul>
+
+
+
+</nav>
+
+<div class="jumbotron">
+   <h1>Association HACK'COEUR vous accompagne dans l'insertion professionnelle et a la recherche d'emploi dans le numérique</h1>
+</div>
+
+<div class="container">
+   <div class="row">
+
+
+
+      <div class="card" style="width: 300rem;">
+            <img src="{% static 'images/image.jpg' %}" class="card-img-top" alt="Accroche HTML">
+         <div class="card-body">
+
+            <p class="card-text"></p>
+            <a href="https://associationhackcoeur.fr/" class="btn btn-primary">Pour d'Informations sur hackcoeur Cliquez ici</a>
+         </div>
+      </div>
+
+
+
+
+
+   </div>
+</div>
+
+
+      <footer class="bg-light text-center text-lg-start">
+         <!-- Copyright -->
+         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+           © 2022 Copyright:
+           <a class="text-dark" href="https://associationhackcoeur.fr/">associationhackcoeur.fr</a>
+         </div>
+         <!-- Copyright -->
+
+      </footer>
+
+
+  </body>
+</html>
+
+{% endblock main_content %}

@@ -1,0 +1,90 @@
+{% extends 'AppBenevole/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block main_content %}
+
+<section class="container">
+
+    <div class="row justify-content-around text-center text-white mt-5">
+
+        <div class="col-sm-8"> <h3> HACK'COEUR </h3></div>
+
+    </div>
+    
+
+    <div class="row justify-content-around text-center text-white mt-1">
+
+        <div class="col-sm-8">
+
+            <table class="table table-dark table-striped">
+                <thead >
+                    <tr>
+                      
+                      <th scope="col">numéro</th>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Prénom</th>
+                      <th scope="col">Ville</th>
+                      <th scope="col">Postale</th>
+                      <th scope="col">Téléphone</th>
+                      <th scope="col">Mail</th>
+                      <th scope="col">Autoriser</th>
+                      <th scope="col">Action</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pers in personne %}
+
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{pers.nom}}</td>
+                      <td>{{pers.prenom}}</td>
+                      <td>{{pers.Ville}}</td>
+                      <td>{{pers.postale}}</td>
+                      <td>{{pers.telephone}}</td>
+                      <td>{{pers.Email}}</td>
+                      <td>{{pers.Autoriser_a_exercer}}</td>
+                      <td class="aline-inline">
+                        <table>
+                          <tr>
+                            <td>
+                              <form action="{% url 'suprimer-personne' %}", method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value={{pers.id}}>
+                                <input type="submit" value="Suprimer" class="btn btn-danger btn-sm">
+      
+                            </form>
+                            </td>
+                            <td>
+                              <a href="{% url 'modifier-personne' pers.id %} " class="btn btn-sm btn-info">Modifier</a>
+                          </td>
+
+                          </tr>
+                        </table>
+
+
+                        
+                      </td>
+
+
+                    </tr>
+                    {% endfor %}
+                
+                  </tbody>
+              </table>
+              
+
+        </div>
+        
+    </div>
+
+    <div class="row justify-content-around mt-3">
+      <div class="col-sm-8">
+          <a href="{% url 'ajouter-personne' %}" class='btn btn-primary float-end'>Ajouter une Personne</a>
+
+      </div>
+  </div>
+
+
+</section>
+
+{% endblock main_content %}

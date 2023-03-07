@@ -1,0 +1,88 @@
+
+
+{% extends 'AppBenevole/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block main_content %}
+
+<section class="container">
+
+    <div class="row justify-content-around text-center text-white mt-5">
+
+        <div class="col-sm-8"> <h3> HACK'COEUR </h3></div>
+
+    </div>
+    
+    
+
+    <div class="row justify-content-around text-center text-white mt-1">
+
+        <div class="col-sm-8">
+
+            <table class="table table-dark table-striped">
+                <thead >
+                    <tr>
+                      <th scope="col">numéro</th>
+                      <th scope="col">id_personne</th>
+                      <th scope="col">nom</th>
+                      <th scope="col">ville</th>
+                      <th scope="col">postale</th>
+                      <th scope="col">types_activités</th>
+                      <th scope="col">Action</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for etab in etablissementaccueil %}
+
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{etab.id_personne}}</td>
+                      <td>{{etab.nom}}</td>
+                      <td>{{etab.ville}}</td>
+                      <td>{{etab.postale}}</td>
+                      <td>{{etab.types_activités}}</td>
+                      <td class="aline-inline">
+                        <table>
+                          <tr>
+                            <td>
+                              <form action="{% url 'suprimer-etablissement-accueil' %}", method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value={{etab.id}}>
+                                <input type="submit" value="Suprimer" class="btn btn-danger btn-sm">
+      
+                            </form>
+                            </td>
+                            <td>
+                              <a href="{% url 'modifier-etablissement-accueil' etab.id %} " class="btn btn-sm btn-info">Modifier</a>
+                          </td>
+
+                          </tr>
+                        </table>
+
+
+                        
+                      </td>
+
+
+                    </tr>
+                    {% endfor %}
+                
+                  </tbody>
+              </table>
+              
+
+        </div>
+        
+    </div>
+
+    <div class="row justify-content-around mt-3">
+      <div class="col-sm-8">
+          <a href="{% url 'ajouter-etablissement-accueil' %}" class='btn btn-primary float-end'>Ajouter une etablissement</a>
+
+      </div>
+  </div>
+
+
+</section>
+
+{% endblock main_content %}
